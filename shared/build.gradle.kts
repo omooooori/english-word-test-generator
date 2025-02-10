@@ -5,9 +5,6 @@ plugins {
 }
 
 ktlint {
-//    android = true
-//    outputToConsole = true
-//    outputColorName = "RED"
     filter {
         exclude { it.file.path.contains("generated") }
     }
