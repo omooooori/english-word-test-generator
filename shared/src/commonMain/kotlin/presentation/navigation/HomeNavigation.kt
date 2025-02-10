@@ -7,4 +7,3 @@ sealed interface HomeNavigation {
     @Serializable
     data object Home : HomeNavigation
 }
-

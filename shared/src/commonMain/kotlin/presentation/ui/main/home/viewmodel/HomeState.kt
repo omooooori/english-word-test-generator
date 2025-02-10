@@ -1,4 +1,4 @@
-package presentation.ui.main.home.view_model
+package presentation.ui.main.home.viewmodel
 
 import business.core.NetworkState
 import business.core.ProgressBarState

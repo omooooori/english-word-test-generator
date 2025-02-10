@@ -7,4 +7,3 @@ sealed interface SplashNavigation {
     @Serializable
     data object Splash : SplashNavigation
 }
-

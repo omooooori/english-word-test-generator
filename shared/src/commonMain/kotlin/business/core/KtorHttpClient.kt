@@ -15,23 +15,24 @@ import kotlinx.serialization.json.Json
 
 object KtorHttpClient {
     @OptIn(ExperimentalSerializationApi::class)
-    fun httpClient() = HttpClient {
-        expectSuccess = false
-        install(HttpTimeout) {
-            val timeout = 60000L
-            connectTimeoutMillis = timeout
-            requestTimeoutMillis = timeout
-            socketTimeoutMillis = timeout
-        }
-
-        install(ResponseObserver) {
-            onResponse { response ->
-                println("AppDebug HTTP ResponseObserver status: ${response.status.value}")
+    fun httpClient() =
+        HttpClient {
+            expectSuccess = false
+            install(HttpTimeout) {
+                val timeout = 60000L
+                connectTimeoutMillis = timeout
+                requestTimeoutMillis = timeout
+                socketTimeoutMillis = timeout
             }
-        }
-        HttpResponseValidator {
-            validateResponse { response: HttpResponse ->
-                val statusCode = response.status.value
+
+            install(ResponseObserver) {
+                onResponse { response ->
+                    println("AppDebug HTTP ResponseObserver status: ${response.status.value}")
+                }
+            }
+            HttpResponseValidator {
+                validateResponse { response: HttpResponse ->
+                    val statusCode = response.status.value
 
                 /*
                                     when (statusCode) {
@@ -48,28 +49,31 @@ object KtorHttpClient {
                                 handleResponseException { cause: Throwable ->
                                     throw cause
                                 }*/
-            }
-        }
-
-        install(Logging) {
-            //  logger = Logger.DEFAULT
-            level = LogLevel.ALL
-
-            logger = object : Logger {
-                override fun log(message: String) {
-                    println("AppDebug KtorHttpClient message:$message")
                 }
             }
+
+            install(Logging) {
+                //  logger = Logger.DEFAULT
+                level = LogLevel.ALL
+
+                logger =
+                    object : Logger {
+                        override fun log(message: String) {
+                            println("AppDebug KtorHttpClient message:$message")
+                        }
+                    }
+            }
+            install(ContentNegotiation) {
+                json(
+                    Json {
+                        explicitNulls = false
+                        ignoreUnknownKeys = true
+                        isLenient = true
+                        prettyPrint = true
+                        encodeDefaults = true
+                        classDiscriminator = "#class"
+                    },
+                )
+            }
         }
-        install(ContentNegotiation) {
-            json(Json {
-                explicitNulls = false
-                ignoreUnknownKeys = true
-                isLenient = true
-                prettyPrint = true
-                encodeDefaults = true
-                classDiscriminator = "#class"
-            })
-        }
-    }
 }

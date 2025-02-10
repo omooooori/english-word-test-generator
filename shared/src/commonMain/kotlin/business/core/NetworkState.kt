@@ -1,7 +1,7 @@
 package business.core
 
-sealed class NetworkState{
-   data object Good: NetworkState()
+sealed class NetworkState {
+    data object Good : NetworkState()
 
-   data object Failed: NetworkState()
+    data object Failed : NetworkState()
 }

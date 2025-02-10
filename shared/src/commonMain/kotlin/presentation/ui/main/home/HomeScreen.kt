@@ -9,20 +9,20 @@ import androidx.compose.ui.Modifier
 import business.core.UIComponent
 import kotlinx.coroutines.flow.Flow
 import presentation.component.DefaultScreenUI
-import presentation.ui.main.home.view_model.HomeEvent
-import presentation.ui.main.home.view_model.HomeState
+import presentation.ui.main.home.viewmodel.HomeEvent
+import presentation.ui.main.home.viewmodel.HomeState
 
 @Composable
 fun HomeScreen(
     state: HomeState,
     events: (HomeEvent) -> Unit = {},
-    errors: Flow<UIComponent>
+    errors: Flow<UIComponent>,
 ) {
     DefaultScreenUI(
         errors = errors,
         progressBarState = state.progressBarState,
         networkState = state.networkState,
-        onTryAgain = {  }
+        onTryAgain = { },
     ) {
         Column(modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState())) {
         }

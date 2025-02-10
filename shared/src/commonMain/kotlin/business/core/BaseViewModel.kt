@@ -1,21 +1,21 @@
 package business.core
 
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
-abstract class BaseViewModel<Event : ViewEvent,
-        UiState : ViewState,
-        SingleAction : ViewSingleAction> : ViewModel() {
-
+abstract class BaseViewModel<
+    Event : ViewEvent,
+    UiState : ViewState,
+    SingleAction : ViewSingleAction,
+    > : ViewModel() {
     abstract fun setInitialState(): UiState
+
     abstract fun onTriggerEvent(event: Event)
 
     private val initialState: UiState by lazy { setInitialState() }
@@ -26,7 +26,6 @@ abstract class BaseViewModel<Event : ViewEvent,
 
     private val _action: Channel<SingleAction> = Channel()
     val action = _action.receiveAsFlow()
-
 
     private val _errors: Channel<UIComponent> = Channel()
     val errors = _errors.receiveAsFlow()

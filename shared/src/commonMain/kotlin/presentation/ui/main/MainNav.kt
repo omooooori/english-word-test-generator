@@ -40,24 +40,19 @@ fun MainNav(logout: () -> Unit) {
             NavHost(
                 startDestination = BottomNavigation.Home.route,
                 navController = navBottomBarController,
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier.fillMaxSize(),
             ) {
                 composable(route = BottomNavigation.Home.route) {
                     HomeNav()
                 }
             }
         }
-
     }
 }
 
-
 @OptIn(ExperimentalResourceApi::class)
 @Composable
-fun BottomNavigationUI(
-    navController: NavController,
-) {
-
+fun BottomNavigationUI(navController: NavController) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
@@ -65,22 +60,24 @@ fun BottomNavigationUI(
         colors = DefaultCardColorsTheme(),
         modifier = Modifier.fillMaxWidth(),
         elevation = CardDefaults.cardElevation(10.dp),
-        shape = RoundedCornerShape(
-            topStart = 16.dp,
-            topEnd = 16.dp
-        )
+        shape =
+            RoundedCornerShape(
+                topStart = 16.dp,
+                topEnd = 16.dp,
+            ),
     ) {
         NavigationBar(
             containerColor = MaterialTheme.colorScheme.background,
             contentColor = MaterialTheme.colorScheme.background,
-            tonalElevation = 8.dp
+            tonalElevation = 8.dp,
         ) {
-
-            val items = listOf(
-                BottomNavigation.Home
-            )
+            val items =
+                listOf(
+                    BottomNavigation.Home,
+                )
             items.forEach {
-                NavigationBarItem(label = { Text(text = it.title) },
+                NavigationBarItem(
+                    label = { Text(text = it.title) },
                     colors = DefaultNavigationBarItemTheme(),
                     selected = it.route == currentRoute,
                     icon = { },
@@ -96,7 +93,8 @@ fun BottomNavigationUI(
                                 restoreState = true
                             }
                         }
-                    })
+                    },
+                )
             }
         }
     }

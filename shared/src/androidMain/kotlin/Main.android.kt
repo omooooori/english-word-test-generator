@@ -3,8 +3,4 @@ import androidx.compose.runtime.Composable
 import presentation.App
 
 @Composable
-fun MainView(application: Application) {
-    App(application)
-}
-
-
+fun MainView(application: Application) = App(application)

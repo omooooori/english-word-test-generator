@@ -36,7 +36,7 @@ fun DefaultButton(
     border: BorderStroke? = null,
     colors: ButtonColors = ButtonDefaults.buttonColors(),
     contentPadding: PaddingValues = ButtonDefaults.ContentPadding,
-    content: @Composable RowScope.() -> Unit
+    content: @Composable RowScope.() -> Unit,
 ) {
     Button(
         enabled = enabled,
@@ -51,14 +51,15 @@ fun DefaultButton(
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(4.dp)
+            horizontalArrangement = Arrangement.spacedBy(4.dp),
         ) {
             AnimatedVisibility(
-                visible = (progressBarState == ProgressBarState.ButtonLoading || progressBarState == ProgressBarState.FullScreenLoading)
+                visible = (progressBarState == ProgressBarState.ButtonLoading || progressBarState == ProgressBarState.FullScreenLoading),
             ) {
                 CircularProgressIndicator(
-                    modifier = Modifier
-                        .size(25.dp),
+                    modifier =
+                        Modifier
+                            .size(25.dp),
                     strokeWidth = 2.dp,
                     color = if (enabled) MaterialTheme.colorScheme.background else MaterialTheme.colorScheme.primary,
                 )

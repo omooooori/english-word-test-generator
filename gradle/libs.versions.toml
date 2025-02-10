@@ -34,7 +34,7 @@ coil3-io = "3.0.0-alpha01"
 coroutines-test-ver = "1.10.0"
 kotest = "5.8.0"
 turbine = "1.2.0"
-mockk = "1.13.10"
+mockk = "1.8.13.kotlin13"
 accompanist-version = "0.33.2-alpha"
 accompanist-permissions = "0.37.0"
 

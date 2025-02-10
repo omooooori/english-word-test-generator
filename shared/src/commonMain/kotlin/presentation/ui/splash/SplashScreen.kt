@@ -1,4 +1,4 @@
-package co.jp.omooooori.yarutan.presentation.ui.splash
+package presentation.ui.splash
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -12,6 +12,7 @@ import presentation.theme.splashBackground
 internal fun SplashScreen() {
     Box(
         modifier = Modifier.fillMaxSize().background(splashBackground),
-        contentAlignment = Alignment.BottomCenter
-    ) {}
+        contentAlignment = Alignment.BottomCenter,
+    ) {
+    }
 }

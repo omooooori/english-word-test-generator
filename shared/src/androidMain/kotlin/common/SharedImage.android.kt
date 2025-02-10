@@ -8,11 +8,13 @@ import java.io.ByteArrayOutputStream
 
 actual class SharedImage(private val bitmap: android.graphics.Bitmap?) {
     actual fun toByteArray(): ByteArray? {
-       // val compressedBitmap = compressImage(bitmap ?: return null)
+        // val compressedBitmap = compressImage(bitmap ?: return null)
         return if (bitmap != null) {
             val byteArrayOutputStream = ByteArrayOutputStream()
             bitmap.compress(
-                android.graphics.Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream
+                android.graphics.Bitmap.CompressFormat.PNG,
+                100,
+                byteArrayOutputStream,
             )
             byteArrayOutputStream.toByteArray()
         } else {
@@ -30,13 +32,12 @@ actual class SharedImage(private val bitmap: android.graphics.Bitmap?) {
     }
 }
 
-
 private fun compressImage(bmp: android.graphics.Bitmap): android.graphics.Bitmap? {
     val baos = ByteArrayOutputStream()
     bmp.compress(
         android.graphics.Bitmap.CompressFormat.PNG,
         100,
-        baos
+        baos,
     )
     var options = 90
     while (baos.toByteArray().size / 1024 > 400) {
@@ -44,7 +45,7 @@ private fun compressImage(bmp: android.graphics.Bitmap): android.graphics.Bitmap
         bmp.compress(
             android.graphics.Bitmap.CompressFormat.PNG,
             options,
-            baos
+            baos,
         )
         options -= 10
     }

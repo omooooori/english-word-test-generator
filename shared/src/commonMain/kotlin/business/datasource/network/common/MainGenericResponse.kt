@@ -1,6 +1,5 @@
 package business.datasource.network.common
 
-
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

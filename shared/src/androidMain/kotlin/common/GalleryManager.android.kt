@@ -23,8 +23,8 @@ actual fun rememberGalleryManager(onResult: (SharedImage?) -> Unit): GalleryMana
         GalleryManager(onLaunch = {
             galleryLauncher.launch(
                 PickVisualMediaRequest(
-                    mediaType = ActivityResultContracts.PickVisualMedia.ImageOnly
-                )
+                    mediaType = ActivityResultContracts.PickVisualMedia.ImageOnly,
+                ),
             )
         })
     }

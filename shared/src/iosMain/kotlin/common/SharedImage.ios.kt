@@ -16,8 +16,9 @@ actual class SharedImage(private val image: UIImage?) {
     actual fun toByteArray(): ByteArray? {
         val compressedImage = compressImage(image ?: return null)
         return if (compressedImage != null) {
-            val imageData = UIImageJPEGRepresentation(compressedImage, COMPRESSION_QUALITY)
-                ?: throw IllegalArgumentException("image data is null")
+            val imageData =
+                UIImageJPEGRepresentation(compressedImage, COMPRESSION_QUALITY)
+                    ?: throw IllegalArgumentException("image data is null")
             val bytes = imageData.bytes ?: throw IllegalArgumentException("image bytes is null")
             val length = imageData.length
 
@@ -26,9 +27,7 @@ actual class SharedImage(private val image: UIImage?) {
         } else {
             null
         }
-
     }
-
 
     actual fun toImageBitmap(): ImageBitmap? {
         val byteArray = toByteArray()
@@ -42,9 +41,7 @@ actual class SharedImage(private val image: UIImage?) {
     private companion object {
         const val COMPRESSION_QUALITY = 0.99
     }
-
 }
-
 
 private fun compressImage(uiImage: UIImage): UIImage? {
     var photo = uiImage

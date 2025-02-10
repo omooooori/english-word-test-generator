@@ -5,7 +5,10 @@ import androidx.compose.runtime.Composable
 expect class PermissionsManager(callback: PermissionCallback) : PermissionHandler
 
 interface PermissionCallback {
-    fun onPermissionStatus(permissionType: PermissionType, status: PermissionStatus)
+    fun onPermissionStatus(
+        permissionType: PermissionType,
+        status: PermissionStatus,
+    )
 }
 
 @Composable

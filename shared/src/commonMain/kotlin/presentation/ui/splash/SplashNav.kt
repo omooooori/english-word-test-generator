@@ -7,14 +7,11 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import co.jp.omooooori.yarutan.presentation.ui.splash.SplashScreen
 import kotlinx.coroutines.delay
 import presentation.navigation.SplashNavigation
 
 @Composable
-internal fun SplashNav(
-    navigateToMain: () -> Unit
-) {
+internal fun SplashNav(navigateToMain: () -> Unit) {
     val navigator = rememberNavController()
     LaunchedEffect(Unit) {
         delay(3000L)
@@ -24,7 +21,7 @@ internal fun SplashNav(
     NavHost(
         startDestination = SplashNavigation.Splash,
         navController = navigator,
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize(),
     ) {
         composable<SplashNavigation.Splash> {
             SplashScreen()

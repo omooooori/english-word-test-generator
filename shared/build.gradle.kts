@@ -5,16 +5,19 @@ plugins {
 }
 
 ktlint {
-    android = true
-    outputToConsole = true
-    outputColorName = "RED"
+//    android = true
+//    outputToConsole = true
+//    outputColorName = "RED"
+    filter {
+        exclude { it.file.path.contains("generated") }
+    }
 }
 
 kotlin {
     listOf(
         iosX64(),
         iosArm64(),
-        iosSimulatorArm64()
+        iosSimulatorArm64(),
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
             baseName = "shared"

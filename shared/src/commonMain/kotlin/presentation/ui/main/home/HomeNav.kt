@@ -8,7 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import org.koin.compose.koinInject
 import presentation.navigation.HomeNavigation
-import presentation.ui.main.home.view_model.HomeViewModel
+import presentation.ui.main.home.viewmodel.HomeViewModel
 
 @Composable
 fun HomeNav() {
@@ -16,14 +16,14 @@ fun HomeNav() {
     NavHost(
         startDestination = HomeNavigation.Home,
         navController = navigator,
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize(),
     ) {
         composable<HomeNavigation.Home> {
             val viewModel: HomeViewModel = koinInject()
             HomeScreen(
                 errors = viewModel.errors,
                 state = viewModel.state.value,
-                events = viewModel::onTriggerEvent
+                events = viewModel::onTriggerEvent,
             )
         }
     }

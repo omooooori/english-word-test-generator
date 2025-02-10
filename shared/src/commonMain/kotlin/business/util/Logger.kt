@@ -1,34 +1,37 @@
 package business.util
 
 class Logger(
-    private val tag:String,
-    private val isDebug:Boolean=true,
+    private val tag: String,
+    private val isDebug: Boolean = true,
 ) {
-    fun log(msg:String){
-        if (!isDebug){
-            printLogD(tag,msg)
-        }else{
-            printLogD(tag,msg)
+    fun log(msg: String) {
+        if (!isDebug) {
+            printLogD(tag, msg)
+        } else {
+            printLogD(tag, msg)
         }
     }
 
-    companion object Factory{
-        fun buildDebug(tag:String): Logger {
+    companion object Factory {
+        fun buildDebug(tag: String): Logger {
             return Logger(
                 tag = tag,
-                isDebug = true
+                isDebug = true,
             )
         }
-        fun buildRelease(tag:String): Logger {
+
+        fun buildRelease(tag: String): Logger {
             return Logger(
                 tag = tag,
-                isDebug = false
+                isDebug = false,
             )
         }
     }
-
 }
 
-fun printLogD(tag: String?,msg: String?){
+fun printLogD(
+    tag: String?,
+    msg: String?,
+) {
     println("$tag: $msg")
 }

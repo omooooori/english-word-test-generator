@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class AlertResponse(
     @SerialName("title") var title: String = "",
-    @SerialName("message") var message: String = ""
+    @SerialName("message") var message: String = "",
 )

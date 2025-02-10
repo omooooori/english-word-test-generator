@@ -1,6 +1,5 @@
 package common
 
-
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.mutableStateOf
@@ -14,7 +13,6 @@ import platform.UIKit.UIColor
 import platform.UIKit.UIView
 import platform.UIKit.UIWindow
 
-
 @OptIn(ExperimentalForeignApi::class)
 @Composable
 actual fun ChangeStatusBarColors(statusBarColor: Color) {
@@ -24,13 +22,17 @@ actual fun ChangeStatusBarColors(statusBarColor: Color) {
     window.safeAreaLayoutGuide.layoutFrame.copy {
         // Getting safe area size in case of landscape and portrait
         safeFrameSize.value = origin.y
-
     }
-    val statusBar = UIView(
-        frame = CGRectMake(
-            x = 0.0, y = 0.0, width = Double.MAX_VALUE, height = safeFrameSize.value
+    val statusBar =
+        UIView(
+            frame =
+                CGRectMake(
+                    x = 0.0,
+                    y = 0.0,
+                    width = Double.MAX_VALUE,
+                    height = safeFrameSize.value,
+                ),
         )
-    )
     statusBar.backgroundColor = statusBarColor.toUIColor()
 
     SideEffect {
@@ -43,6 +45,6 @@ fun Color.toUIColor(): UIColor {
         red = red.toDouble(),
         green = green.toDouble(),
         blue = blue.toDouble(),
-        alpha = alpha.toDouble()
+        alpha = alpha.toDouble(),
     )
 }
